@@ -1,5 +1,5 @@
-NumA			EQU		0x40900000
-NumB			EQU		0xc0700000
+NumA				EQU		0x40900000
+NumB				EQU		0xc0700000
 Aux				DCD		0x7f800000, 0x007fffff, 0x7fffffff
 			
 				ldr		R0, =NumA
@@ -24,35 +24,35 @@ Aux				DCD		0x7f800000, 0x007fffff, 0x7fffffff
 			
 				b		multiplicacao
 			
-sinalA			lsr		R0, R0, #31
+sinalA				lsr		R0, R0, #31
 				mov		PC, LR
 			
-expoenterealA	lsl		R0, R0, #1
+expoenterealA			lsl		R0, R0, #1
 				lsr		R0, R0, #27
 				add		R0, R0, #-127
 				mov		PC, LR
 			
-mantissaA		ldr		R1, =Aux
+mantissaA			ldr		R1, =Aux
 				ldr		R1, [R1, #4]
 				and		R1, R1, R0
 				orr		R0, R1, #0x800000
 				mov		PC, Lr
 			
-sinalB			lsr		R0, R0, #31
+sinalB				lsr		R0, R0, #31
 				mov		PC, LR
 			
-expoenterealB	lsl		R0, R0, #1
+expoenterealB			lsl		R0, R0, #1
 				lsr		R0, R0, #27
 				add		R0, R0, #-127
 				mov		PC, LR
 			
-mantissaB		ldr		R1, =Aux
+mantissaB			ldr		R1, =Aux
 				ldr		R1, [R1, #4]
 				and		R1, R1, R0
 				orr		R0, R1, #0x800000
 				mov		PC, Lr
 			
-multiplicacao	ldr		R0, =NumA
+multiplicacao			ldr		R0, =NumA
 				ldr		R1, =NumB
 				cmp		R0, #0
 				beq		FIM
@@ -62,13 +62,13 @@ multiplicacao	ldr		R0, =NumA
 				beq		multiplica_pos
 				b		multiplica_neg
 			
-multiplica_pos	mov		R6, #0 					; R6 terá armazenado o valor do sinal
+multiplica_pos			mov		R6, #0 					; R6 terá armazenado o valor do sinal
 				mov		R9, #-127
 				add		R9, R7, R8 				; R9 terá armazenado o valor do expoente
 				b		calcshiftsbits
 				END
 			
-multiplica_neg	mov		R6, #1 					; R6 terá armazenado o valor do sinal
+multiplica_neg			mov		R6, #1 					; R6 terá armazenado o valor do sinal
 				mov		R9, #-127
 				add		R9, R7, R8 				; R9 terá armazenado o valor do expoente
 				b		calcshiftsbits
