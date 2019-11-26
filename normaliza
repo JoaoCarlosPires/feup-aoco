@@ -1,11 +1,11 @@
-normaliza		cmp		R0,
+normaliza			cmp		R0,
 				bmi		normaliza_cont
 				lsr		R0,R0,#1
 				add		R1,R1,#1
 				b		normaliza
-normaliza_cont	cmp		R0,
+normaliza_cont			cmp		R0,
 				bpl		normaliza_fim
 				lsl		
 				sub		
 				b		normaliza_cont
-normaliza_fim	mov		PC, LR
+normaliza_fim			mov		PC, LR
