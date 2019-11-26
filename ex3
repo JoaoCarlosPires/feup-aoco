@@ -1,5 +1,5 @@
-NumA			EQU		0x40900000
-NumB			EQU		0xc0700000
+NumA				EQU		0x40900000
+NumB				EQU		0xc0700000
 Aux				DCD		0x7f800000, 0x007fffff, 0x7fffffff
 			
 				ldr		R0, =NumA 			; cálculo do sinal, expoente e mantissa do número A
@@ -25,21 +25,21 @@ Aux				DCD		0x7f800000, 0x007fffff, 0x7fffffff
 				b		soma
 			
 			
-sinal			lsr		R0, R0, #31
+sinal				lsr		R0, R0, #31
 				mov		PC, LR
 			
-expoentereal	lsl		R0, R0, #1
+expoentereal			lsl		R0, R0, #1
 				lsr		R0, R0, #27
 				add		R0, R0, #-127
 				mov		PC, LR
 			
-mantissa		ldr		R1, =Aux
+mantissa			ldr		R1, =Aux
 				ldr		R1, [R1, #4]
 				and		R1, R1, R0
 				orr		R0, R1, #0x800000
 				mov		PC, Lr
 			
-soma			ldr		R0, =NumA
+soma				ldr		R0, =NumA
 				ldr		R1, =NumB
 				cmp		R0, #0
 				beq		FIM
