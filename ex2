@@ -1,4 +1,4 @@
-NumA			EQU		0xc20a0000
+NumA				EQU		0xc20a0000
 Aux				DCD		0x7f800000, 0x007fffff, 0x7fffffff
 			
 				ldr		R0, =NumA
@@ -12,15 +12,15 @@ Aux				DCD		0x7f800000, 0x007fffff, 0x7fffffff
 				mov		R8, R0
 				END
 			
-sinal			lsr		R0, R0, #31
+sinal				lsr		R0, R0, #31
 				mov		PC, LR
 			
-expoentereal	lsl		R0, R0, #1
+expoentereal			lsl		R0, R0, #1
 				lsr		R0, R0, #27
 				add		R0, R0, #-127
 				mov		PC, LR
 			
-mantissa		ldr		R1, =Aux
+mantissa			ldr		R1, =Aux
 				ldr		R1, [R1, #4]
 				and		R1, R1, R0
 				orr		R0, R1, #0x800000
